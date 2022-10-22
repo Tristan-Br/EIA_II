@@ -1,4 +1,4 @@
-namespace Eventinspector{
+namespace Eventinspector {
 
     window.addEventListener("load", handleLoad);
 
