@@ -2,8 +2,7 @@ namespace Eventinspector {
 
     window.addEventListener("load", handleLoad);
 
-    function handleLoad(_event: Event): void 
-    {
+    function handleLoad(_event: Event): void {
     document.addEventListener("mousemove", setInfoBox);
     document.addEventListener("click", logInfo);
     document.addEventListener("keyup", logInfo);
@@ -24,8 +23,7 @@ namespace Eventinspector {
     div1.addEventListener("keyup", logInfo);
     }
 
-    function setInfoBox(_event: MouseEvent): void 
-    {
+    function setInfoBox(_event: MouseEvent): void {
     let span: HTMLElement = <HTMLElement>document.querySelector("span");    
     let x: number = _event.clientX;
     let y: number = _event.clientY;
@@ -36,8 +34,7 @@ namespace Eventinspector {
     span.innerHTML = "X: " + x + " Y: " + y + " Objekt: " + target;
     }
 
-    function logInfo(_event: Event): void
-    {
+    function logInfo(_event: Event): void {
     console.log(_event.type);
     console.log(_event.target);
     console.log(_event.currentTarget);
