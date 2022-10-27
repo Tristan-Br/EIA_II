@@ -36,9 +36,9 @@ var Eventinspector;
     function customEvent(_event) {
         let newEvent = new CustomEvent("customEvent", { bubbles: true });
         button.dispatchEvent(newEvent);
-        function catchEvent(_event) {
-            console.log("Hallo Erde C-137");
-        }
+    }
+    function catchEvent(_event) {
+        console.log("Hallo Erde C-137");
     }
 })(Eventinspector || (Eventinspector = {}));
 //# sourceMappingURL=Eventinspektor.js.map
