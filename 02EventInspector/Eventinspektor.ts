@@ -40,4 +40,14 @@ namespace Eventinspector {
     console.log(_event.currentTarget);
     console.log(_event);   
     }
+
+    function customEvent(_event: Event): void {
+    let newEvent: CustomEvent = new CustomEvent("customEvent", {bubbles: true});
+    let button: HTMLElement = <HTMLElement>document.querySelector("#button");
+    button.dispatchEvent(newEvent);
+
+    function catchEvent(_event: CustomEvent): void {
+    console.log("Hallo Erde C-137");
+    }
+    }
 }
