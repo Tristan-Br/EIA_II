@@ -1,6 +1,7 @@
 var Eventinspector;
 (function (Eventinspector) {
     window.addEventListener("load", handleLoad);
+    let button;
     function handleLoad(_event) {
         document.addEventListener("mousemove", setInfoBox);
         document.addEventListener("click", logInfo);
@@ -14,6 +15,8 @@ var Eventinspector;
         let div1 = document.getElementById("div1");
         div1.addEventListener("click", logInfo);
         div1.addEventListener("keyup", logInfo);
+        button = document.querySelector("#button");
+        button.addEventListener("click", customEvent);
     }
     function setInfoBox(_event) {
         let span = document.querySelector("span");
@@ -29,6 +32,13 @@ var Eventinspector;
         console.log(_event.target);
         console.log(_event.currentTarget);
         console.log(_event);
+    }
+    function customEvent(_event) {
+        let newEvent = new CustomEvent("customEvent", { bubbles: true });
+        button.dispatchEvent(newEvent);
+        function catchEvent(_event) {
+            console.log("Hallo Erde C-137");
+        }
     }
 })(Eventinspector || (Eventinspector = {}));
 //# sourceMappingURL=Eventinspektor.js.map
