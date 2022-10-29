@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoppinglist</title>
+    <script src="shoppingscript.js"></script>
+    <link rel="stylesheet" href="shoppingcss.css">
+</head>
+<body>
+    <h2>Shopping List</h2>
+
+    <div id="add">
+        <form id="addItem">
+            <fieldset id="fieldset">
+                <input type="text" name="addItem" placeholder="Item">
+                <input type="number" name="addAmount" placeholder="Amount">
+                <input type="text" name="addComment" placeholder="Comment">
+                <button type="button" id="button">Add</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <h2>Overview</h2>
+    
+    <li id="shoppingList">
+        <div id="list">
+            <input type="checkbox" id="check">
+            <div id="item">
+                <p class="itemProperties">Nudeln</p>
+                <p class="itemProperties">2</p>
+                <p class="itemProperties">Glutenfrei</p>
+                <p class="itemProperties">20.4.22</p>
+            </div>
+
+            <div id="buttons">
+                <button id="edit">Edit</button>
+                <button id="deletee">Delete</button>
+            </div>
+        </div>
+    </li>
+</body>
+</html>
