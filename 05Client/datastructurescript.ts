@@ -60,8 +60,6 @@ namespace shoppingList05 {
 
         addElement(divItemData, comment.toString()); 
 
-        addElement(divItemData, dateNoTime); 
-
         addButton(newDiv, "edit"); 
 
         addButton(newDiv, "delete"); 
@@ -71,7 +69,7 @@ namespace shoppingList05 {
 
     }
 
-    function addItem(): void {
+    async function addItem(): Promise<void> {
         let formData: FormData = new FormData(document.querySelector("form"));
         let newItem: FormDataEntryValue = formData.get("addItem");
         let amount: FormDataEntryValue = formData.get("addAmount");
@@ -105,6 +103,10 @@ namespace shoppingList05 {
         addButton(newDiv, "delete"); 
 
         list.appendChild(newDiv);
+
+        let query: URLSearchParams = new URLSearchParams(<any>formData);
+        await fetch("shoppinglist.html?" + query.toString());
+        alert("Item added!");
 
     }
     function addElement(_parent: HTMLElement, _content?: string): void {
