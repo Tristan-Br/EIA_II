@@ -25,6 +25,50 @@ namespace shoppingList05 {
         addButton.addEventListener("click", addItem);
 
         let response: Response = await fetch ("https://github.com/Tristan-Br/EIA_II/blob/main/05Client/Data.json");
+        let item: string = await response.text();
+        let data: Data = JSON.parse(item);
+
+        generateExistingItem(data); 
+
+        
+    }
+
+    function generateExistingItem(_data: Data): void {
+        let values: ItemAdded[] = _data[1];
+        console.log(values[0].newItem);  
+
+        let newItem: string = values[0].newItem;
+        let amount: number = values[0].amount;
+        let comment: string = values[0].comment;
+        let list: HTMLElement = document.getElementById("list");
+        let newDiv: HTMLDivElement = document.createElement("div");
+        let newInput: HTMLInputElement = document.createElement("input");
+        let divItemData: HTMLDivElement = document.createElement("div");
+
+
+        createInput(newInput, newDiv); 
+
+        createDiv(newDiv); 
+
+        createItemDiv(divItemData, newDiv); 
+
+        addElement(divItemData);
+
+        addElement(divItemData, newItem.toString());
+
+        addElement(divItemData, amount.toString());
+
+        addElement(divItemData, comment.toString()); 
+
+        addElement(divItemData, dateNoTime); 
+
+        addButton(newDiv, "edit"); 
+
+        addButton(newDiv, "delete"); 
+
+        list.appendChild(newDiv);
+
+
     }
 
     function addItem(): void {
