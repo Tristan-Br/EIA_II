@@ -1,3 +1,6 @@
+//Tristan Broghammer
+//Quellen: Yannik König, Robert Schindler, Jonas Atzenhofer
+
 namespace shoppingList05 {
 
     window.addEventListener("load", handleLoad);
@@ -16,9 +19,12 @@ namespace shoppingList05 {
         [1]: ItemAdded[]; 
     }
 
-    async function handleLoad(): void {
+    async function handleLoad(_event: Event): Promise<void> {
+
         let addButton: HTMLButtonElement = document.querySelector("button#button");
         addButton.addEventListener("click", addItem);
+
+        let response: Response = await fetch ("https://github.com/Tristan-Br/EIA_II/blob/main/05Client/Data.json");
     }
 
     function addItem(): void {
