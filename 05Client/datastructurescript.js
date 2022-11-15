@@ -1,12 +1,39 @@
+//Tristan Broghammer
+//Quellen: Yannik König, Robert Schindler, Jonas Atzenhofer
 var shoppingList05;
 (function (shoppingList05) {
     window.addEventListener("load", handleLoad);
     let itemNumber = 0;
-    async function handleLoad() {
+    async function handleLoad(_event) {
         let addButton = document.querySelector("button#button");
         addButton.addEventListener("click", addItem);
+        let response = await fetch("https://github.com/Tristan-Br/EIA_II/blob/main/05Client/Data.json");
+        let item = await response.text();
+        let data = JSON.parse(item);
+        generateExistingItem(data);
     }
-    function addItem() {
+    function generateExistingItem(_data) {
+        let values = _data[1];
+        console.log(values[0].newItem);
+        let newItem = values[0].newItem;
+        let amount = values[0].amount;
+        let comment = values[0].comment;
+        let list = document.getElementById("list");
+        let newDiv = document.createElement("div");
+        let newInput = document.createElement("input");
+        let divItemData = document.createElement("div");
+        createInput(newInput, newDiv);
+        createDiv(newDiv);
+        createItemDiv(divItemData, newDiv);
+        addElement(divItemData);
+        addElement(divItemData, newItem.toString());
+        addElement(divItemData, amount.toString());
+        addElement(divItemData, comment.toString());
+        addButton(newDiv, "edit");
+        addButton(newDiv, "delete");
+        list.appendChild(newDiv);
+    }
+    async function addItem() {
         let formData = new FormData(document.querySelector("form"));
         let newItem = formData.get("addItem");
         let amount = formData.get("addAmount");
@@ -29,6 +56,9 @@ var shoppingList05;
         addButton(newDiv, "edit");
         addButton(newDiv, "delete");
         list.appendChild(newDiv);
+        let query = new URLSearchParams(formData);
+        await fetch("shoppinglist.html?" + query.toString());
+        alert("Item added!");
     }
     function addElement(_parent, _content) {
         let newItemField = document.createElement("p");

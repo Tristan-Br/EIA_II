@@ -1,5 +1,4 @@
 //Tristan Broghammer
-//Quellen: Yannik König, Jonas Atzenhofer
 
 namespace shoppingList05 {
 

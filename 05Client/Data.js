@@ -1,5 +1,4 @@
 //Tristan Broghammer
-//Quellen: Yannik König, Jonas Atzenhofer
 var shoppingList05;
 (function (shoppingList05) {
     shoppingList05.data = {
