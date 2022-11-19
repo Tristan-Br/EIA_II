@@ -1,7 +1,7 @@
 //Tristan Broghammer
 //Quellen: Yannik König, Robert Schindler, Jonas Atzenhofer
-var shoppingList05;
-(function (shoppingList05) {
+var shoppingList06;
+(function (shoppingList06) {
     window.addEventListener("load", handleLoad);
     let itemNumber = 0;
     async function handleLoad(_event) {
@@ -120,5 +120,5 @@ var shoppingList05;
         let remIt = document.getElementById("lister" + identifyer);
         list.removeChild(remIt);
     }
-})(shoppingList05 || (shoppingList05 = {}));
+})(shoppingList06 || (shoppingList06 = {}));
 //# sourceMappingURL=datastructurescript.js.map

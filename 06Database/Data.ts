@@ -1,6 +1,6 @@
 //Tristan Broghammer
 
-namespace shoppingList05 {
+namespace shoppingList06 {
 
     export interface ItemAdded {
         newItem: string;

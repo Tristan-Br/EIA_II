@@ -1,7 +1,7 @@
 //Tristan Broghammer
 //Quellen: Yannik König, Robert Schindler, Jonas Atzenhofer
 
-namespace shoppingList05 {
+namespace shoppingList06 {
 
     window.addEventListener("load", handleLoad);
 

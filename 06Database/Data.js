@@ -1,7 +1,7 @@
 //Tristan Broghammer
-var shoppingList05;
-(function (shoppingList05) {
-    shoppingList05.data = {
+var shoppingList06;
+(function (shoppingList06) {
+    shoppingList06.data = {
         1: [
             { newItem: "Schokodrink", amount: 1, comment: "nur im Tetrapack", bought: false, date: "5.11.2022" }
         ],
@@ -9,5 +9,5 @@ var shoppingList05;
             { newItem: "Orangensaft", amount: 1, comment: "turn up", bought: false, date: "5.11.2022" }
         ]
     };
-})(shoppingList05 || (shoppingList05 = {}));
+})(shoppingList06 || (shoppingList06 = {}));
 //# sourceMappingURL=Data.js.map
