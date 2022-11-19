@@ -7,7 +7,7 @@ var shoppingList06;
     async function handleLoad(_event) {
         let addButton = document.querySelector("button#button");
         addButton.addEventListener("click", addItem);
-        let response = await fetch("https://github.com/Tristan-Br/EIA_II/blob/main/05Client/Data.json");
+        let response = await fetch("https://github.com/Tristan-Br/EIA_II/blob/main/06Database/Data.json");
         let item = await response.text();
         let data = JSON.parse(item);
         generateExistingItem(data);
