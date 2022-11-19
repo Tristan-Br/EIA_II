@@ -1,9 +1,13 @@
 //Tristan Broghammer
-//Quellen: Yannik König, Robert Schindler, Jonas Atzenhofer
+//Quellen: Yannik König, Jonas Atzenhofer
 var shoppingList06;
 (function (shoppingList06) {
-    window.addEventListener("load", handleLoad);
     let itemNumber = 0;
+    let elementCounter = 0;
+    let date = new Date();
+    let dateNoTime = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+    let url = "https://webuser.hs-furtwangen.de/~broghamt/Database/index.php";
+    window.addEventListener("load", handleLoad);
     async function handleLoad(_event) {
         let addButton = document.querySelector("button#button");
         addButton.addEventListener("click", addItem);

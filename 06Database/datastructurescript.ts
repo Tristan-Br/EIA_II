@@ -1,11 +1,16 @@
 //Tristan Broghammer
-//Quellen: Yannik König, Robert Schindler, Jonas Atzenhofer
+//Quellen: Yannik König, Jonas Atzenhofer
 
 namespace shoppingList06 {
 
+    let itemNumber: number = 0;
+    let elementCounter: number = 0;
+    let date: Date = new Date();
+    let dateNoTime: string = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+    let url: string = "https://webuser.hs-furtwangen.de/~broghamt/Database/index.php";
+
     window.addEventListener("load", handleLoad);
 
-    let itemNumber: number = 0;
 
     interface ItemAdded {
         newItem: string;
@@ -16,7 +21,12 @@ namespace shoppingList06 {
     }
 
     interface Data {
-        [1]: ItemAdded[]; 
+        [id: number]: ItemAdded[]; 
+    }
+
+    interface Return {
+        status: string;
+        data: Data; 
     }
 
     async function handleLoad(_event: Event): Promise<void> {
