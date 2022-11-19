@@ -1,6 +1,6 @@
 //Tristan Broghammer
 
-namespace shoppingList06 {
+namespace shoppingList06S {
 
     export interface ItemAdded {
         newItem: string;
@@ -19,7 +19,7 @@ namespace shoppingList06 {
             { newItem: "Schokodrink", amount: 1, comment: "nur im Tetrapack", bought: false, date: "5.11.2022" }
         ], 
         2: [
-            { newItem: "Orangensaft", amount: 1, comment: "turn up", bought: false, date: "5.11.2022" }
+            { newItem: "Orangensaft", amount: 1, comment: "Tuurn up", bought: false, date: "5.11.2022" }
         ]
     }; 
 }

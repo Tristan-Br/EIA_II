@@ -8,10 +8,16 @@ var shoppingList06;
     let dateNoTime = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
     let url = "https://webuser.hs-furtwangen.de/~broghamt/Database/index.php";
     window.addEventListener("load", handleLoad);
+    //"https://github.com/Tristan-Br/EIA_II/blob/main/06Database/Data.json"
     async function handleLoad(_event) {
-        let addButton = document.querySelector("button#button");
+        let addButton = document.querySelector("button#add");
         addButton.addEventListener("click", addItem);
-        let response = await fetch("https://github.com/Tristan-Br/EIA_II/blob/main/06Database/Data.json");
+        document.addEventListener("keypress", function (event) {
+            if (event.key == "Enter") {
+                addItem();
+            }
+        });
+        let response = await fetch(url + "?command=find&collection=dataList");
         let item = await response.text();
         let data = JSON.parse(item);
         generateExistingItem(data);

@@ -29,18 +29,23 @@ namespace shoppingList06 {
         data: Data; 
     }
 
+    //"https://github.com/Tristan-Br/EIA_II/blob/main/06Database/Data.json"
+
     async function handleLoad(_event: Event): Promise<void> {
-
-        let addButton: HTMLButtonElement = document.querySelector("button#button");
+        let addButton: HTMLButtonElement = document.querySelector("button#add");
         addButton.addEventListener("click", addItem);
+        document.addEventListener("keypress", function(event: KeyboardEvent): void {
+            if (event.key == "Enter") {
+                addItem(); 
+            }
+        });  
 
-        let response: Response = await fetch ("https://github.com/Tristan-Br/EIA_II/blob/main/06Database/Data.json");
+
+        let response: Response = await fetch(url + "?command=find&collection=dataList"); 
         let item: string = await response.text();
-        let data: Data = JSON.parse(item);
+        let data: Return = JSON.parse(item);
 
         generateExistingItem(data); 
-
-        
     }
 
     function generateExistingItem(_data: Data): void {
