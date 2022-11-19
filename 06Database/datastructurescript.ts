@@ -2,7 +2,6 @@
 //Quellen: Yannik König, Jonas Atzenhofer
 
 namespace shoppingList06 {
-
     let itemNumber: number = 0;
     let elementCounter: number = 0;
     let date: Date = new Date();
@@ -36,7 +35,7 @@ namespace shoppingList06 {
         addButton.addEventListener("click", addItem);
         document.addEventListener("keypress", function(event: KeyboardEvent): void {
             if (event.key == "Enter") {
-                addItem(); 
+                 addItem(); 
             }
         });  
 
@@ -49,12 +48,16 @@ namespace shoppingList06 {
     }
 
     function generateExistingItem(_data: Data): void {
-        let values: ItemAdded[] = _data[1];
-        console.log(values[0].newItem);  
 
-        let newItem: string = values[0].newItem;
-        let amount: number = values[0].amount;
-        let comment: string = values[0].comment;
+        let keys: string[] = Object.keys(_data.data);
+        for (let index: number = 0; index < keys.length; index++) {
+
+        let item: string[] = _data.data[keys[index]];  
+        let text: string[] = Object.values(item); 
+
+        let newItem: string = text[0];
+        let amount: number = parseInt(text[1]);
+        let comment: string = text[2];
         let list: HTMLElement = document.getElementById("list");
         let newDiv: HTMLDivElement = document.createElement("div");
         let newInput: HTMLInputElement = document.createElement("input");
@@ -84,7 +87,7 @@ namespace shoppingList06 {
 
     }
 
-    async function addItem(): Promise<void> {
+        async function addItem(): Promise<void> {
         let formData: FormData = new FormData(document.querySelector("form"));
         let newItem: FormDataEntryValue = formData.get("addItem");
         let amount: FormDataEntryValue = formData.get("addAmount");
@@ -119,12 +122,34 @@ namespace shoppingList06 {
 
         list.appendChild(newDiv);
 
-        let query: URLSearchParams = new URLSearchParams(<any>formData);
-        await fetch("shoppinglist.html?" + query.toString());
-        alert("Item added!");
+        sendData(formData); 
+
 
     }
-    function addElement(_parent: HTMLElement, _content?: string): void {
+
+        async function sendData(_formData: FormData): Promise<void> {
+
+        interface FormDataJSON {
+            [key: string]: FormDataEntryValue | FormDataEntryValue[];
+          }
+        let json: FormDataJSON = {};
+        for (let key of _formData.keys())
+            if (!json[key]) {
+              let values: FormDataEntryValue[] = _formData.getAll(key);
+              json[key] = values.length > 1 ? values : values[0];
+            } 
+
+        let query: URLSearchParams = new URLSearchParams(); 
+        query.set("command", "insert");
+        query.set("collection", "dataList");
+        query.set("data", JSON.stringify(json));
+        let response: Response = await fetch(url + "?" + query.toString());
+        let responseText: string = await response.text();
+        console.log();
+
+    }
+
+        function addElement(_parent: HTMLElement, _content?: string): void {
         let newItemField: HTMLElement = document.createElement("p");
         _parent.appendChild(newItemField);
         newItemField.setAttribute("class", "ItemDataFont");
@@ -134,7 +159,7 @@ namespace shoppingList06 {
     
     }
     
-    function addButton(_parent: HTMLElement, _identify: string): void {
+        function addButton(_parent: HTMLElement, _identify: string): void {
         let newButton: HTMLElement = document.createElement("button");
         _parent.appendChild(newButton);
         newButton.setAttribute("class", _identify);
@@ -152,12 +177,12 @@ namespace shoppingList06 {
         }
     }
     
-    function createDiv(_element: HTMLElement): void {
+        function createDiv(_element: HTMLElement): void {
         _element.setAttribute("class", "lister");
         _element.setAttribute("id", "lister" + itemNumber);
     }
     
-    function createInput(_element: HTMLElement, _parent: HTMLElement): void {
+        function createInput(_element: HTMLElement, _parent: HTMLElement): void {
         _parent.appendChild(_element);
         _element.setAttribute("class", "bought");
         _element.setAttribute("id", "bought" + itemNumber);
@@ -165,26 +190,26 @@ namespace shoppingList06 {
         _element.addEventListener("change", itemBought);
     }
     
-    function createItemDiv(_element: HTMLElement, _parent: HTMLElement): void {
+        function createItemDiv(_element: HTMLElement, _parent: HTMLElement): void {
         _parent.appendChild(_element);
         _element.setAttribute("class", "ItemData");
         _element.setAttribute("id", "ItemData" + itemNumber);
     }
     
-    function itemBought(_event: Event): void {
+        function itemBought(_event: Event): void {
         let trigger: string = (_event.target as HTMLInputElement).id;
         let triggerNum: string = trigger.replace(/\D/g, "");
         let identifyer: number = parseInt(triggerNum);
         //to be continued
     }
     
-    function editItem(_event: Event): void {
+        function editItem(_event: Event): void {
         let trigger: string = (_event.target as HTMLButtonElement).id;
         let triggerNumber: string = trigger.replace(/\D/g, "");
         //to be continued
     }
     
-    function deleteItem(_event: Event): void {
+        function deleteItem(_event: Event): void {
         let trigger: string = (_event.target as HTMLButtonElement).id;
         let triggerNum: string = trigger.replace(/\D/g, "");
         let identifyer: number = parseInt(triggerNum);
@@ -195,6 +220,9 @@ namespace shoppingList06 {
         
 }
 }
+}
+
+    
 
     
 
