@@ -83,7 +83,6 @@ var shoppingList06;
             query.set("data", JSON.stringify(json));
             let response = await fetch(url + "?" + query.toString());
             let responseText = await response.text();
-            console.log();
         }
         function addElement(_parent, _content) {
             let newItemField = document.createElement("p");
@@ -126,11 +125,29 @@ var shoppingList06;
             _element.setAttribute("class", "ItemData");
             _element.setAttribute("id", "ItemData" + itemNumber);
         }
-        function itemBought(_event) {
+        async function itemBought(_event) {
             let trigger = _event.target.id;
             let triggerNum = trigger.replace(/\D/g, "");
             let identifyer = parseInt(triggerNum);
-            //to be continued
+            let response0 = await fetch(url + "?command=find&collection=dataList");
+            let itemResponse = await response0.text();
+            let data = JSON.parse(itemResponse);
+            let keys = Object.keys(data.data);
+            let id = keys[identifyer];
+            let query = new URLSearchParams();
+            query.set("command", "update");
+            query.set("collection", "dataList");
+            query.set("id", id);
+            query.set("data", "{'bought': true}");
+            let response1 = await fetch(url + "?" + query.toString());
+            let responseText = await response1.text();
+            console.log(responseText);
+            if (responseText.includes("success")) {
+                alert("Item marked as bought!");
+            }
+            else {
+                alert("Error! Try again!");
+            }
         }
         function editItem(_event) {
             let trigger = _event.target.id;

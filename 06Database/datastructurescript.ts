@@ -145,8 +145,7 @@ namespace shoppingList06 {
         query.set("data", JSON.stringify(json));
         let response: Response = await fetch(url + "?" + query.toString());
         let responseText: string = await response.text();
-        console.log();
-
+        
     }
 
         function addElement(_parent: HTMLElement, _content?: string): void {
@@ -196,12 +195,35 @@ namespace shoppingList06 {
         _element.setAttribute("id", "ItemData" + itemNumber);
     }
     
-        function itemBought(_event: Event): void {
-        let trigger: string = (_event.target as HTMLInputElement).id;
-        let triggerNum: string = trigger.replace(/\D/g, "");
-        let identifyer: number = parseInt(triggerNum);
-        //to be continued
-    }
+        async function itemBought(_event: Event): void {
+            let trigger: string = (_event.target as HTMLInputElement).id;
+            let triggerNum: string = trigger.replace(/\D/g, "");
+            let identifyer: number = parseInt(triggerNum);
+    
+            let response0: Response = await fetch(url + "?command=find&collection=dataList"); 
+            let itemResponse: string = await response0.text();
+            let data: Return = JSON.parse(itemResponse);
+    
+            let keys: string[] = Object.keys(data.data);
+    
+            let id: string = keys[identifyer];
+    
+            let query: URLSearchParams = new URLSearchParams(); 
+            query.set("command", "update");
+            query.set("collection", "dataList");
+            query.set("id", id); 
+            query.set("data", "{'bought': true}"); 
+            let response1: Response = await fetch(url + "?" + query.toString());
+            let responseText: string = await response1.text();
+            console.log(responseText); 
+    
+            if (responseText.includes("success")) {
+                alert("Item marked as bought!"); 
+            }
+            else {
+                alert("Error! Try again!");
+                    }  
+        }
     
         function editItem(_event: Event): void {
         let trigger: string = (_event.target as HTMLButtonElement).id;
