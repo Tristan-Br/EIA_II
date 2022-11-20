@@ -345,15 +345,30 @@ namespace shoppingList06 {
 
     }
     
-        function deleteItem(_event: Event): void {
-        let trigger: string = (_event.target as HTMLButtonElement).id;
-        let triggerNum: string = trigger.replace(/\D/g, "");
-        let identifyer: number = parseInt(triggerNum);
+        async function deleteItem(_event: Event): void {
+            let trigger: string = (_event.target as HTMLButtonElement).id; 
+            let triggerNum: string = trigger.replace(/\D/g, "");
+            let identifyer: number = parseInt(triggerNum);
     
-        let list: HTMLElement = document.getElementById("list");
-        let remIt: HTMLElement = document.getElementById("lister" + identifyer);
-        list.removeChild(remIt);
-        
+            let list: HTMLElement = document.getElementById("list");
+            let remIt: HTMLElement = document.getElementById("lister" + identifyer);
+            list.removeChild(remIt);
+    
+            let response0: Response = await fetch(url + "?command=find&collection=dataList"); 
+            let item: string = await response0.text();
+            let data: Return = JSON.parse(item);
+    
+            let keys: string[] = Object.keys(data.data);
+            console.log(keys); 
+            console.log(identifyer); 
+            let id: string = keys[identifyer];
+            let query: URLSearchParams = new URLSearchParams(); 
+            query.set("command", "delete");
+            query.set("collection", "dataList");
+            query.set("id", id); 
+            let response1: Response = await fetch(url + "?" + query.toString());
+            let responseText: string = await response1.text();
+    
 }
 }
 }

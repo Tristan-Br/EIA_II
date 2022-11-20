@@ -240,13 +240,26 @@ var shoppingList06;
                 alert("Error! Try again!");
             }
         }
-        function deleteItem(_event) {
+        async function deleteItem(_event) {
             let trigger = _event.target.id;
             let triggerNum = trigger.replace(/\D/g, "");
             let identifyer = parseInt(triggerNum);
             let list = document.getElementById("list");
             let remIt = document.getElementById("lister" + identifyer);
             list.removeChild(remIt);
+            let response0 = await fetch(url + "?command=find&collection=dataList");
+            let item = await response0.text();
+            let data = JSON.parse(item);
+            let keys = Object.keys(data.data);
+            console.log(keys);
+            console.log(identifyer);
+            let id = keys[identifyer];
+            let query = new URLSearchParams();
+            query.set("command", "delete");
+            query.set("collection", "dataList");
+            query.set("id", id);
+            let response1 = await fetch(url + "?" + query.toString());
+            let responseText = await response1.text();
         }
     }
 })(shoppingList06 || (shoppingList06 = {}));
