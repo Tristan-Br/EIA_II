@@ -8,18 +8,24 @@ var Canvas01;
         canvas.height = window.innerHeight;
         crc2.fillStyle = "#FFF";
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-        crc2.beginPath();
-        for (let i = 0; i < 100; i++) {
-            let x = Math.random() * crc2.canvas.width;
-            let y = Math.random() * crc2.canvas.height;
-            crc2.arc(x, y, 20, 0, 2 * Math.PI);
-        }
         //Background
         let gradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
-        gradient.addColorStop(0, 'green');
-        gradient.addColorStop(1, 'pink');
+        gradient.addColorStop(0, "#000");
+        gradient.addColorStop(1, "hsl(" + randomNumber(0, 400) + ", 100%, 50%)");
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+        function randomNumber(_min, _max) {
+            return Math.floor(Math.random() * _max) + _min;
+        }
+        //Grid
+        //Sun
+        let x = randomNumber(100, 2000);
+        let y = randomNumber(100, 1000);
+        crc2.beginPath();
+        crc2.arc(x, y, 200, 0, 2 * Math.PI);
+        crc2.scale(10, 10);
+        crc2.fillStyle = "#" + "FF" + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9);
+        crc2.fill();
     }
 })(Canvas01 || (Canvas01 = {}));
 //# sourceMappingURL=Canvas.js.map
