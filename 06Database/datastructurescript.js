@@ -8,9 +8,8 @@ var shoppingList06;
     let dateNoTime = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
     let url = "https://webuser.hs-furtwangen.de/~broghamt/Database/index.php";
     window.addEventListener("load", handleLoad);
-    //"https://github.com/Tristan-Br/EIA_II/blob/main/06Database/Data.json"
     async function handleLoad(_event) {
-        let addButton = document.querySelector("button#add");
+        let addButton = document.querySelector("button#button");
         addButton.addEventListener("click", addItem);
         document.addEventListener("keypress", function (event) {
             if (event.key == "Enter") {

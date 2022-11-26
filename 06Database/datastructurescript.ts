@@ -28,10 +28,9 @@ namespace shoppingList06 {
         data: Data; 
     }
 
-    //"https://github.com/Tristan-Br/EIA_II/blob/main/06Database/Data.json"
 
     async function handleLoad(_event: Event): Promise<void> {
-        let addButton: HTMLButtonElement = document.querySelector("button#add");
+        let addButton: HTMLButtonElement = document.querySelector("button#button");
         addButton.addEventListener("click", addItem);
         document.addEventListener("keypress", function(event: KeyboardEvent): void {
             if (event.key == "Enter") {
@@ -195,7 +194,7 @@ namespace shoppingList06 {
         _element.setAttribute("id", "ItemData" + itemNumber);
     }
     
-        async function itemBought(_event: Event): void {
+        async function itemBought(_event: Event): Promise<void> {
             let trigger: string = (_event.target as HTMLInputElement).id;
             let triggerNum: string = trigger.replace(/\D/g, "");
             let identifyer: number = parseInt(triggerNum);
@@ -345,7 +344,7 @@ namespace shoppingList06 {
 
     }
     
-        async function deleteItem(_event: Event): void {
+        async function deleteItem(_event: Event): Promise<void> {
             let trigger: string = (_event.target as HTMLButtonElement).id; 
             let triggerNum: string = trigger.replace(/\D/g, "");
             let identifyer: number = parseInt(triggerNum);
