@@ -27,13 +27,11 @@ namespace Canvas01 {
             }  
 
 
-        //Grid
-
         
         //Sun
 
-        let x: number = randomNumber(100, 2000);
-        let y: number = randomNumber(100, 1000);
+        let x: number = randomNumber(100, 1700);
+        let y: number = randomNumber(100, 900);
 
         crc2.beginPath();
         crc2.arc(x, y, 200, 0, 2 * Math.PI);

@@ -17,10 +17,9 @@ var Canvas01;
         function randomNumber(_min, _max) {
             return Math.floor(Math.random() * _max) + _min;
         }
-        //Grid
         //Sun
-        let x = randomNumber(100, 2000);
-        let y = randomNumber(100, 1000);
+        let x = randomNumber(100, 1700);
+        let y = randomNumber(100, 900);
         crc2.beginPath();
         crc2.arc(x, y, 200, 0, 2 * Math.PI);
         crc2.scale(10, 10);
