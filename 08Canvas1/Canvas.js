@@ -47,6 +47,7 @@ var Canvas01;
             crc2.moveTo(randomNumber(0, 100), -10);
             crc2.lineTo(randomNumber(1, 500), randomNumber(1, 500));
             crc2.lineWidth = randomNumber(1, 6);
+            crc2.strokeStyle = "#" + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9);
             crc2.stroke();
         }
     }
