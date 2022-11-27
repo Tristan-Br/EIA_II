@@ -1,3 +1,4 @@
+//Tristan Broghammer
 var Canvas01;
 (function (Canvas01) {
     window.addEventListener("load", handleLoad);
