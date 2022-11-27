@@ -32,8 +32,8 @@ var Canvas01;
         pattern.fill();
         pattern.stroke();
         for (let i = 0; i < 50; i++) {
-            let x = Math.random() * canvas.width;
-            let y = Math.random() * canvas.height;
+            let x = randomNumber(0, 2000);
+            let y = randomNumber(0, 1000);
             let width = Math.random() * 100;
             let height = Math.random() * 100;
             let color = "#" + randomNumber(10, 90) + randomNumber(1, 7) + randomNumber(0, 7) + randomNumber(5, 9) + randomNumber(6, 9);

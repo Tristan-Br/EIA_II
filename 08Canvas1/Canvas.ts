@@ -46,8 +46,8 @@ namespace Canvas01 {
 
 
         for (let i: number = 0; i < 50; i++) {
-            let x: number = Math.random() * canvas.width;
-            let y: number = Math.random() * canvas.height;
+            let x: number = randomNumber(0, 2000);
+            let y: number = randomNumber(0, 1000);
             let width: number = Math.random() * 100;
             let height: number = Math.random() * 100;
             let color: string = "#" + randomNumber(10, 90) + randomNumber(1, 7) + randomNumber(0, 7) + randomNumber(5, 9) + randomNumber(6, 9);
