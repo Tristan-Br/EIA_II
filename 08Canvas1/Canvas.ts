@@ -42,7 +42,7 @@ namespace Canvas01 {
             
         }
         
-        
+
         //Horizon
 
         crc2.beginPath();
@@ -62,6 +62,20 @@ namespace Canvas01 {
         crc2.scale(10, 10);
         crc2.fillStyle = "#" + "FF" + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9);
         crc2.fill();
+
+        //Beams
+
+        let lineAmount: number = 2;
+
+        for (let amount: number = 0; amount < lineAmount; amount++) {
+            crc2.beginPath();
+    
+            crc2.moveTo(randomNumber(0, 100), -10);
+            crc2.lineTo(randomNumber(1, 500), randomNumber(1, 500));
+            crc2.lineWidth = randomNumber(1, 6);
+
+            crc2.stroke();
+        }
 
         
         
