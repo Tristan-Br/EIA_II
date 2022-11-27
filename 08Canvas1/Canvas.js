@@ -17,6 +17,29 @@ var Canvas01;
         function randomNumber(_min, _max) {
             return Math.floor(Math.random() * _max) + _min;
         }
+        //Stars
+        let pattern = document.createElement("canvas").getContext("2d");
+        pattern.canvas.width = 80;
+        pattern.canvas.height = 40;
+        pattern.fillStyle = "black";
+        pattern.strokeStyle = "black";
+        pattern.lineWidth = 5;
+        pattern.beginPath();
+        for (let i = 0; i < 200; i++) {
+            pattern.arc(Math.random() * pattern.canvas.width, Math.random() * pattern.canvas.height, 10, 0, 2 * Math.PI);
+        }
+        pattern.closePath();
+        pattern.fill();
+        pattern.stroke();
+        for (let i = 0; i < 50; i++) {
+            let x = Math.random() * canvas.width;
+            let y = Math.random() * canvas.height;
+            let width = Math.random() * 100;
+            let height = Math.random() * 100;
+            let color = "#" + randomNumber(10, 90) + randomNumber(1, 7) + randomNumber(0, 7) + randomNumber(5, 9) + randomNumber(6, 9);
+            crc2.fillStyle = color;
+            crc2.fillRect(x, y, width, height);
+        }
         //Grid
         crc2.beginPath();
         for (let i = 0; i <= 2000; i = i + randomNumber(10, 100)) {
@@ -32,24 +55,24 @@ var Canvas01;
         crc2.lineTo(2000, 500);
         crc2.strokeStyle = "#" + randomNumber(10, 20) + randomNumber(4, 7) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9);
         crc2.stroke();
-        //Sun
+        //Beams
         let x = randomNumber(200, 1300);
         let y = randomNumber(100, 300);
+        let lineAmount = 200;
+        for (let amount = 0; amount < lineAmount; amount++) {
+            crc2.beginPath();
+            crc2.moveTo(x, y);
+            crc2.lineTo(randomNumber(600, 2200), randomNumber(0, 2000));
+            crc2.lineWidth = 2;
+            crc2.strokeStyle = "#" + "FF" + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9);
+            crc2.stroke();
+        }
+        //Sun
         crc2.beginPath();
         crc2.arc(x, y, 200, 0, 2 * Math.PI);
         crc2.scale(10, 10);
         crc2.fillStyle = "#" + "FF" + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9);
         crc2.fill();
-        //Beams
-        let lineAmount = 2;
-        for (let amount = 0; amount < lineAmount; amount++) {
-            crc2.beginPath();
-            crc2.moveTo(randomNumber(0, 100), -10);
-            crc2.lineTo(randomNumber(1, 500), randomNumber(1, 500));
-            crc2.lineWidth = randomNumber(1, 6);
-            crc2.strokeStyle = "#" + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9);
-            crc2.stroke();
-        }
     }
 })(Canvas01 || (Canvas01 = {}));
 //# sourceMappingURL=Canvas.js.map

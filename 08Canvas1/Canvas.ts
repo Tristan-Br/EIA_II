@@ -27,6 +27,33 @@ namespace Canvas01 {
             }  
 
 
+        //Stars
+
+        let pattern: CanvasRenderingContext2D = document.createElement("canvas").getContext("2d");
+        pattern.canvas.width = 80;
+        pattern.canvas.height = 40;
+
+        pattern.fillStyle = "black";
+        pattern.strokeStyle = "black";
+        pattern.lineWidth = 5;
+        pattern.beginPath();
+        for (let i: number = 0; i < 200; i++) {
+            pattern.arc(Math.random() * pattern.canvas.width, Math.random() * pattern.canvas.height, 10, 0, 2 * Math.PI);
+        }
+        pattern.closePath();
+        pattern.fill();
+        pattern.stroke();
+
+
+        for (let i: number = 0; i < 50; i++) {
+            let x: number = Math.random() * canvas.width;
+            let y: number = Math.random() * canvas.height;
+            let width: number = Math.random() * 100;
+            let height: number = Math.random() * 100;
+            let color: string = "#" + randomNumber(10, 90) + randomNumber(1, 7) + randomNumber(0, 7) + randomNumber(5, 9) + randomNumber(6, 9);
+            crc2.fillStyle = color;
+            crc2.fillRect(x, y, width, height);
+        }
         //Grid
 
         crc2.beginPath();
@@ -51,11 +78,26 @@ namespace Canvas01 {
         crc2.strokeStyle = "#" + randomNumber(10, 20) + randomNumber(4, 7) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9);
         crc2.stroke();
 
-        
-        //Sun
+
+        //Beams
 
         let x: number = randomNumber(200, 1300);
         let y: number = randomNumber(100, 300);
+
+        let lineAmount: number = 200;
+
+        for (let amount: number = 0; amount < lineAmount; amount++) {
+            crc2.beginPath();
+    
+            crc2.moveTo(x, y);
+            crc2.lineTo(randomNumber(600, 2200), randomNumber(0, 2000));
+            crc2.lineWidth = 2;
+            crc2.strokeStyle = "#" + "FF" + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9);
+            crc2.stroke();
+        }
+
+        
+        //Sun
 
         crc2.beginPath();
         crc2.arc(x, y, 200, 0, 2 * Math.PI);
@@ -63,19 +105,9 @@ namespace Canvas01 {
         crc2.fillStyle = "#" + "FF" + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9);
         crc2.fill();
 
-        //Beams
+        
 
-        let lineAmount: number = 2;
 
-        for (let amount: number = 0; amount < lineAmount; amount++) {
-            crc2.beginPath();
-    
-            crc2.moveTo(randomNumber(0, 100), -10);
-            crc2.lineTo(randomNumber(1, 500), randomNumber(1, 500));
-            crc2.lineWidth = randomNumber(1, 6);
-            crc2.strokeStyle = "#" + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9) + randomNumber(0, 9);
-            crc2.stroke();
-        }
 
         
         
