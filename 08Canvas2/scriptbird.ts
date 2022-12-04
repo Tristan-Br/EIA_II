@@ -17,7 +17,7 @@ namespace birds {
     canvas.height = window.innerHeight;
 
     drawBackground();
-    drawSun({ x: 150, y: 120 });
+    drawSun({ x: randomNumber(100, 1650), y: randomNumber(40, 100) });
     drawMountains({ x: 0, y: 300 }, 75, 200, "grey", "white");
     drawMountains({ x: 0, y: 300 }, 50, 150, "grey", "lightgrey");
 
