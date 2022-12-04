@@ -18,6 +18,8 @@ namespace birds {
 
     drawBackground();
     drawSun({ x: 150, y: 120 });
+    drawMountains({ x: 0, y: 300 }, 75, 200, "grey", "white");
+    drawMountains({ x: 0, y: 300 }, 50, 150, "grey", "lightgrey");
 
     function drawBackground (): void {
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
@@ -48,7 +50,46 @@ namespace birds {
         crc2.arc(0, 0, r2, 0, 2 * Math.PI);
         crc2.fill();
         crc2.restore();
+
     }
+
+    function drawMountains(_position: Vector, _min: number, _max: number, _colorLow: string, _colorHigh: string): void {
+        console.log("Mountains");
+
+        let stepMin: number = 50;
+        let stepMax: number = 150;
+        let x: number = 0;
+
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+
+        crc2.beginPath();
+        crc2.moveTo(0, 0);
+        crc2.lineTo(0, -_max);
+
+        do {
+            x += stepMin + Math.random() * (stepMax - stepMin);
+            let y: number = -_min - Math.random() * (_max - _min);
+
+            crc2.lineTo(x, y);
+        } while (x < crc2.canvas.width);
+
+        crc2.lineTo(x, 0);
+        crc2.closePath();
+
+        let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, -_max);
+        gradient.addColorStop(0, _colorLow);
+        gradient.addColorStop(0.7, _colorHigh);
+
+        crc2.fillStyle = gradient;
+        crc2.fill();
+
+        crc2.restore();
+    }
+
+    function randomNumber(_min: number, _max: number): number {
+        return Math.floor(Math.random() * _max) + _min;
+    }  
         
 
 }
