@@ -52,6 +52,7 @@
     drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
     drawSnowman({x: randomNumber(100, 1000), y: 620});
     drawHouse({x: 500, y: 620});
+    drawBirds({ x: canvas.width, y: 800 });
     drawSnowflakes({ x: canvas.width, y: 800 }, { x: 200, y: 200 });
 
     function drawBackground (): void {
@@ -278,7 +279,9 @@
         crc2.closePath();
 
         crc2.restore();
-}
+    }
+
+    function drawBirds (_position: Vector,): void {}
 
 }
     
