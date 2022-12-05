@@ -40,6 +40,8 @@ var birds;
         drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
         drawTree({ x: randomNumber(10, 2000), y: 540 }, { x: 10, y: 100 });
         drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
+        drawSnowman({ x: randomNumber(100, 1000), y: 620 });
+        drawHouse({ x: 500, y: 620 });
         drawSnowflakes({ x: canvas.width, y: 800 }, { x: 200, y: 200 });
         function drawBackground() {
             let gradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
@@ -133,6 +135,78 @@ var birds;
                 crc2.fill(snowflake);
                 crc2.restore();
             }
+            crc2.restore();
+        }
+        function drawSnowman(_position) {
+            let head = { x: _position.x, y: _position.y - 125 };
+            crc2.save();
+            crc2.translate(_position.x, _position.y);
+            crc2.strokeStyle = "white";
+            crc2.fillStyle = "white";
+            crc2.lineWidth = 0;
+            crc2.beginPath();
+            crc2.arc(0, -15, 45, 0, 2 * Math.PI);
+            crc2.fill();
+            crc2.stroke();
+            crc2.closePath();
+            crc2.beginPath();
+            crc2.arc(0, -74, 35, 0, 2 * Math.PI);
+            crc2.fill();
+            crc2.stroke();
+            crc2.closePath();
+            crc2.beginPath();
+            crc2.arc(0, -125, 25, 0, 2 * Math.PI);
+            crc2.fill();
+            crc2.stroke();
+            crc2.closePath();
+            crc2.restore();
+            crc2.save();
+            crc2.translate(head.x, head.y + 10);
+            crc2.fillStyle = "black";
+            crc2.beginPath();
+            crc2.arc(-10, -14, 5, 0, 2 * Math.PI);
+            crc2.fill();
+            crc2.closePath();
+            crc2.beginPath();
+            crc2.arc(10, -14, 5, 0, 2 * Math.PI);
+            crc2.fill();
+            crc2.closePath();
+            crc2.beginPath();
+            crc2.lineWidth = 5;
+            crc2.moveTo(-10, -3);
+            crc2.lineTo(10, -3);
+            crc2.closePath();
+            crc2.stroke();
+            crc2.restore();
+        }
+        function drawHouse(_position) {
+            crc2.save();
+            crc2.translate(1200, 600);
+            crc2.fillStyle = "darkbrown";
+            crc2.fillRect(0, 0, 80, 80);
+            crc2.strokeStyle = "brown";
+            crc2.beginPath();
+            crc2.moveTo(110, 80);
+            crc2.lineTo(-30, 80);
+            crc2.lineWidth = 12;
+            crc2.stroke();
+            crc2.beginPath();
+            crc2.moveTo(-10, 0);
+            crc2.lineTo(90, 0);
+            crc2.lineTo(40, -50);
+            crc2.fillStyle = "darkbrown";
+            crc2.fill();
+            crc2.closePath();
+            crc2.beginPath();
+            crc2.moveTo(40, 80);
+            crc2.lineTo(40, 200);
+            crc2.lineWidth = 12;
+            crc2.stroke();
+            crc2.fillStyle = "black";
+            crc2.beginPath();
+            crc2.arc(40, 30, 20, 0, 2 * Math.PI);
+            crc2.fill();
+            crc2.closePath();
             crc2.restore();
         }
     }
