@@ -53,6 +53,25 @@
     drawSnowman({x: randomNumber(100, 1000), y: 620});
     drawHouse({x: 500, y: 620});
     drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
+    drawBird({ x: 0, y: 0 });
     drawSnowflakes({ x: canvas.width, y: 800 }, { x: 200, y: 200 });
 
     function drawBackground (): void {
@@ -286,6 +305,8 @@
         crc2.save(); 
         crc2.translate(randomNumber(1400, 1600), randomNumber(500, 510));
 
+       
+
         let color: string = "#" + randomNumber(10, 90) + randomNumber(10, 90) + randomNumber(10, 90);
         
 
@@ -307,6 +328,14 @@
         crc2.arc(-1025, -20, 15, 0, 2 * Math.PI);
         crc2.fill();
         crc2.stroke();
+        crc2.closePath();
+
+        crc2.fillStyle = "yellow";
+        crc2.beginPath();
+        crc2.moveTo(-1038, -10);
+        crc2.lineTo(-1050, -15);
+        crc2.lineTo(-1040, -25);
+        crc2.fill();
         crc2.closePath();
 
         
