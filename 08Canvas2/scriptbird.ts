@@ -282,16 +282,29 @@
     }
 
     function drawBird (_position: Vector): void {
-        let head: Vector = {x: _position.x, y: _position.y}; 
+        let head: Vector = {x: _position.x -200, y: _position.y - 1200}; 
         crc2.save(); 
-        crc2.translate(randomNumber(1300, 1800), randomNumber(500, 510));
+        crc2.translate(randomNumber(1400, 1600), randomNumber(500, 510));
 
-        crc2.strokeStyle = "red";
-        crc2.fillStyle = "red";
+        let color: string = "#" + randomNumber(10, 90) + randomNumber(10, 90) + randomNumber(10, 90);
+        
+
+        crc2.strokeStyle = color;
+        crc2.fillStyle = color;
         crc2.lineWidth = 0;
 
         crc2.beginPath();
-        crc2.arc(-1000, 0, 45, 0, 2 * Math.PI);
+        crc2.arc(-1000, 0, 20, 0, 2 * Math.PI);
+        crc2.fillStyle = color;
+        crc2.fill();
+        crc2.stroke();
+        crc2.strokeStyle = color;
+        crc2.fillStyle = color;
+        crc2.lineWidth = 0;
+        crc2.closePath();
+
+        crc2.beginPath();
+        crc2.arc(-1025, -20, 15, 0, 2 * Math.PI);
         crc2.fill();
         crc2.stroke();
         crc2.closePath();
