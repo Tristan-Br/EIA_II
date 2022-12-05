@@ -8,8 +8,40 @@ var birds;
         canvas.height = window.innerHeight;
         drawBackground();
         drawSun({ x: randomNumber(100, 1650), y: randomNumber(40, 100) });
-        drawMountains({ x: 0, y: 300 }, 75, 200, "grey", "white");
-        drawMountains({ x: 0, y: 300 }, 50, 150, "grey", "lightgrey");
+        drawCloud({ x: 1300, y: 130 }, { x: 250, y: 75 });
+        drawCloud({ x: 1300, y: 130 }, { x: 250, y: 75 });
+        drawMountains({ x: 0, y: 500 }, 75, 250, "grey", "white");
+        drawMountains({ x: 0, y: 500 }, 50, 150, "grey", "lightgrey");
+        drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 540 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 540 }, { x: 10, y: 100 });
+        drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
         function drawBackground() {
             let gradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
             gradient.addColorStop(0, "lightblue");
@@ -59,6 +91,32 @@ var birds;
         function randomNumber(_min, _max) {
             return Math.floor(Math.random() * _max) + _min;
         }
+        function drawTree(_position, _size) {
+            crc2.fillStyle = "#4c3228";
+            crc2.fillRect(_position.x, _position.y, 20, -100);
+            let gradientTree = crc2.createLinearGradient(0, 0, 0, -180);
+            let nBranches = 10;
+            let maxRadius = 60;
+            let branch = new Path2D();
+            branch.arc(0, 0, maxRadius, 0, 2 * Math.PI);
+            crc2.fillStyle = "#2e6930";
+            crc2.fillRect(_position.x, _position.y, 20, -_size.y);
+            crc2.save();
+            crc2.translate(_position.x, _position.y);
+            do {
+                let y = -_size.y - Math.random() * _size.y;
+                let x = Math.random() * _size.x;
+                crc2.save();
+                crc2.translate(x, y);
+                crc2.fill(branch);
+                crc2.restore();
+                nBranches -= 1;
+            } while (nBranches > 0);
+            crc2.restore();
+            crc2.fillStyle = "#4c3228";
+            crc2.fillRect(_position.x, _position.y, 20, -100);
+        }
+        function drawCloud(_position, _size) { }
     }
 })(birds || (birds = {}));
 //# sourceMappingURL=scriptbird.js.map

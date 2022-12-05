@@ -1,4 +1,4 @@
-namespace birds {
+ namespace birds {
     window.addEventListener("load", handleLoad);
     interface Vector {
         x: number;
@@ -18,8 +18,40 @@ namespace birds {
 
     drawBackground();
     drawSun({ x: randomNumber(100, 1650), y: randomNumber(40, 100) });
-    drawMountains({ x: 0, y: 300 }, 75, 200, "grey", "white");
-    drawMountains({ x: 0, y: 300 }, 50, 150, "grey", "lightgrey");
+    drawCloud({ x: 1300, y: 130 }, { x: 250, y: 75 });
+    drawCloud({ x: 1300, y: 130 }, { x: 250, y: 75 });
+    drawMountains({ x: 0, y: 500 }, 75, 250, "grey", "white");
+    drawMountains({ x: 0, y: 500 }, 50, 150, "grey", "lightgrey");
+    drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 540 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 540 }, { x: 10, y: 100 });
+    drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
 
     function drawBackground (): void {
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
@@ -90,6 +122,48 @@ namespace birds {
     function randomNumber(_min: number, _max: number): number {
         return Math.floor(Math.random() * _max) + _min;
     }  
+
+    function drawTree(_position: Vector, _size: Vector): void {
+
+        crc2.fillStyle = "#4c3228";
+        crc2.fillRect(_position.x, _position.y, 20, -100);
+
+        let gradientTree: CanvasGradient = crc2.createLinearGradient(0, 0, 0, -180);
+
+        let nBranches: number = 10;
+        let maxRadius: number = 60;
+        let branch: Path2D = new Path2D();
+        branch.arc(0, 0, maxRadius, 0, 2 * Math.PI);
+        crc2.fillStyle = "#2e6930";
+        crc2.fillRect(_position.x, _position.y, 20, -_size.y);
+
+
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+
+        do {
+            let y: number = -_size.y - Math.random() * _size.y;
+            let x: number = Math.random() * _size.x;
+            crc2.save();
+            crc2.translate(x, y);
+            crc2.fill(branch);
+            crc2.restore();
+            nBranches -= 1;
+        } while (nBranches > 0);
+
+
+
+        crc2.restore();
+
+
+        crc2.fillStyle = "#4c3228";
+        crc2.fillRect(_position.x, _position.y, 20, -100);
+
+
+
+    }
+
+    function drawCloud (_position: Vector, _size: Vector): void {}
         
 
 }
