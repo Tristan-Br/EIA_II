@@ -282,7 +282,7 @@
     }
 
     function drawBird (_position: Vector): void {
-        let head: Vector = {x: _position.x -200, y: _position.y - 1200}; 
+        let head: Vector = {x: _position.x - 200, y: _position.y - 1200}; 
         crc2.save(); 
         crc2.translate(randomNumber(1400, 1600), randomNumber(500, 510));
 
