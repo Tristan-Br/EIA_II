@@ -42,7 +42,7 @@ var birds;
         drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
         drawSnowman({ x: randomNumber(100, 1000), y: 620 });
         drawHouse({ x: 500, y: 620 });
-        drawBirds({ x: canvas.width, y: 800 });
+        drawBird({ x: randomNumber(10, 2000), y: randomNumber(600, 1000) });
         drawSnowflakes({ x: canvas.width, y: 800 }, { x: 200, y: 200 });
         function drawBackground() {
             let gradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
@@ -210,7 +210,20 @@ var birds;
             crc2.closePath();
             crc2.restore();
         }
-        function drawBirds(_position) { }
+        function drawBird(_position) {
+            let head = { x: _position.x, y: _position.y };
+            crc2.save();
+            crc2.translate(_position.x, _position.y);
+            crc2.strokeStyle = "red";
+            crc2.fillStyle = "red";
+            crc2.lineWidth = 0;
+            crc2.beginPath();
+            crc2.arc(-1000, 0, 45, 0, 2 * Math.PI);
+            crc2.fill();
+            crc2.stroke();
+            crc2.closePath();
+            crc2.restore();
+        }
     }
 })(birds || (birds = {}));
 //# sourceMappingURL=scriptbird.js.map
