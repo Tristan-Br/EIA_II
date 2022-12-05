@@ -18,8 +18,6 @@
 
     drawBackground();
     drawSun({ x: randomNumber(100, 1650), y: randomNumber(40, 100) });
-    drawCloud({ x: 1300, y: 130 }, { x: 250, y: 75 });
-    drawCloud({ x: 1300, y: 130 }, { x: 250, y: 75 });
     drawMountains({ x: 0, y: 500 }, 75, 250, "grey", "white");
     drawMountains({ x: 0, y: 500 }, 50, 150, "grey", "lightgrey");
     drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
@@ -52,6 +50,7 @@
     drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
     drawTree({ x: randomNumber(10, 2000), y: 540 }, { x: 10, y: 100 });
     drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
+    drawSnowflakes({ x: canvas.width, y: 800 }, { x: 200, y: 200 });
 
     function drawBackground (): void {
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
@@ -163,7 +162,29 @@
 
     }
 
-    function drawCloud (_position: Vector, _size: Vector): void {}
+    function drawSnowflakes(_position: Vector, _size: Vector): void {
+        let snowflakeAmount: number = 250;
+        let snowflakeRadius: number = 20;
+        let snowflake: Path2D = new Path2D();
+        let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, snowflakeRadius);
+
+        snowflake.arc(0, 0, snowflakeRadius, 0, 2 * Math.PI);
+        gradient.addColorStop(0, "hsla(0, 100%, 100%, 1)");
+        gradient.addColorStop(1, "hsla(0, 100%, 100%, 0)");
+
+        crc2.translate(320, 1000);
+        crc2.fillStyle = gradient;
+
+        for (let drawn: number = 0; drawn < snowflakeAmount; drawn++) {
+            crc2.save();
+            let x: number = (Math.random() - 0.5) * 3000;
+            let y: number = - (Math.random() * 1625);
+            crc2.translate(x, y);
+            crc2.fill(snowflake);
+            crc2.restore();
+        }
+        crc2.restore();
+    }
         
 
 }
