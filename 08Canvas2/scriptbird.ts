@@ -86,9 +86,6 @@
 
 
     function drawSun(_position: Vector): void {
-        console.log("Sun", _position);
-
-
 
         let r1: number = 30;
         let r2: number = 100;
