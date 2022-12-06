@@ -72,7 +72,6 @@ var birds;
             crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
         }
         function drawSun(_position) {
-            console.log("Sun", _position);
             let r1 = 30;
             let r2 = 100;
             let gradient = crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
@@ -86,7 +85,6 @@ var birds;
             crc2.restore();
         }
         function drawMountains(_position, _min, _max, _colorLow, _colorHigh) {
-            console.log("Mountains");
             let stepMin = 50;
             let stepMax = 150;
             let x = 0;
