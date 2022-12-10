@@ -1,0 +1,34 @@
+namespace farm {
+    export class Animal {
+        name: string;
+        species: string;
+        food: Food;
+        foodAmount: number;
+        sound: string;
+
+        constructor(_name: string, _species: string, _food: Food, _foodAmount: number, _sound: string) {
+            this.name = _name;
+            this.species = _species;
+            this.food = _food;
+            this.foodAmount = _foodAmount;
+            this.sound = _sound; 
+        }
+
+        public eat(): void {
+            this.food.eat(this.foodAmount); 
+        }
+
+        public sing(): void {
+            let nameText: HTMLElement = document.getElementById("name");
+            nameText.innerHTML = this.name;
+        
+            let speciesText: HTMLElement = document.getElementById("animal");
+            speciesText.innerHTML = this.species + "s"; 
+
+            for (let index: number = 0; index < 5; index++) {
+            let sound: HTMLElement = document.getElementById("sound" + index); 
+            sound.innerHTML = this.sound; 
+        }
+    }
+}
+}
