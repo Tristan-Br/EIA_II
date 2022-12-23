@@ -1,78 +1,49 @@
- namespace birds {
+namespace animation {
     window.addEventListener("load", handleLoad);
-    interface Vector {
+
+    export let crc2: CanvasRenderingContext2D;   
+    export let canvas: HTMLCanvasElement | null; 
+
+    let snowflakes: Snowflake[] = []; 
+    let birds: Bird[] = [];
+    let background: ImageData; 
+    let xStep: number = 0; 
+
+    export interface Vector {
         x: number;
         y: number;
 
     
     }
 
+    function handleLoad(): void {
+        canvas = document.querySelector("canvas");
+        if (!canvas)
+            return;
+        crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
+        drawCanvas();
+        createSnowflakes();
+        createBirds();
+        setInterval(update, 50); 
+    }
 
-    function handleLoad(_event: Event): void {
+    export function randomNumber(_min: number, _max: number): number {
+        return Math.floor(Math.random() * _max) + _min;
+    }  
 
-    let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
-    let crc2: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d");
+    function drawCanvas(): void {
+        drawBackground();
+        drawSun({ x: randomNumber(50, 300), y: 50 });
+        drawMountains({ x: 0, y: 400 }, 75, 250, "grey", "white");
+        drawMountains({ x: 0, y: 440 }, 50, 150, "grey", "lightgrey");
+        drawTree({ x: randomNumber(10, 400), y: 500 }, { x: 10, y: 100 });
+        drawSnowman({x: 260, y: 620});
+        drawHouse({x: 10, y: 10});
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    drawBackground();
-    drawSun({ x: randomNumber(100, 1650), y: randomNumber(40, 100) });
-    drawMountains({ x: 0, y: 500 }, 75, 250, "grey", "white");
-    drawMountains({ x: 0, y: 500 }, 50, 150, "grey", "lightgrey");
-    drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 540 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 540 }, { x: 10, y: 100 });
-    drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
-    drawSnowman({x: randomNumber(100, 1000), y: 620});
-    drawHouse({x: 500, y: 620});
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawBird({ x: 0, y: 0 });
-    drawSnowflakes({ x: canvas.width, y: 800 }, { x: 200, y: 200 });
+        drawBird({ x: randomNumber(50, 300), y: randomNumber(50, 600) });
+    
+        
+    }
 
     function drawBackground (): void {
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
@@ -83,7 +54,6 @@
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
-
 
     function drawSun(_position: Vector): void {
 
@@ -136,16 +106,11 @@
         crc2.restore();
     }
 
-    function randomNumber(_min: number, _max: number): number {
-        return Math.floor(Math.random() * _max) + _min;
-    }  
-
     function drawTree(_position: Vector, _size: Vector): void {
 
-        crc2.fillStyle = "#4c3228";
+        crc2.fillStyle = "#B07C4F";
         crc2.fillRect(_position.x, _position.y, 20, -100);
 
-        let gradientTree: CanvasGradient = crc2.createLinearGradient(0, 0, 0, -180);
 
         let nBranches: number = 10;
         let maxRadius: number = 60;
@@ -180,30 +145,6 @@
 
     }
 
-    function drawSnowflakes(_position: Vector, _size: Vector): void {
-        let snowflakeAmount: number = 250;
-        let snowflakeRadius: number = 20;
-        let snowflake: Path2D = new Path2D();
-        let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, snowflakeRadius);
-
-        snowflake.arc(0, 0, snowflakeRadius, 0, 2 * Math.PI);
-        gradient.addColorStop(0, "hsla(0, 100%, 100%, 1)");
-        gradient.addColorStop(1, "hsla(0, 100%, 100%, 0)");
-
-        crc2.translate(320, 1000);
-        crc2.fillStyle = gradient;
-
-        for (let drawn: number = 0; drawn < snowflakeAmount; drawn++) {
-            crc2.save();
-            let x: number = (Math.random() - 0.5) * 3000;
-            let y: number = - (Math.random() * 1625);
-            crc2.translate(x, y);
-            crc2.fill(snowflake);
-            crc2.restore();
-        }
-        crc2.restore();
-    }
-     
     function drawSnowman(_position: Vector): void {
         let head: Vector = {x: _position.x, y: _position.y - 125}; 
         crc2.save(); 
@@ -261,9 +202,9 @@
     function drawHouse (_position: Vector): void {
         crc2.save();
 
-        crc2.translate(1200, 600);
+        crc2.translate(50, 450);
 
-        crc2.fillStyle = "darkbrown";
+        crc2.fillStyle = "#B07C4F";
         crc2.fillRect(0, 0, 80, 80);
 
         crc2.strokeStyle = "brown";
@@ -297,11 +238,9 @@
     }
 
     function drawBird (_position: Vector): void {
-        let head: Vector = {x: _position.x - 200, y: _position.y - 1200}; 
+        let head: Vector = {x: _position.x, y: _position.y}; 
         crc2.save(); 
-        crc2.translate(randomNumber(1400, 1600), randomNumber(500, 510));
-
-       
+        crc2.translate(_position.x, _position.y);
 
         let color: string = "#" + randomNumber(10, 90) + randomNumber(10, 90) + randomNumber(10, 90);
         
@@ -311,7 +250,7 @@
         crc2.lineWidth = 0;
 
         crc2.beginPath();
-        crc2.arc(-1000, 0, 20, 0, 2 * Math.PI);
+        crc2.arc(0, 0, 20, 0, 2 * Math.PI);
         crc2.fillStyle = color;
         crc2.fill();
         crc2.stroke();
@@ -321,16 +260,16 @@
         crc2.closePath();
 
         crc2.beginPath();
-        crc2.arc(-1025, -20, 15, 0, 2 * Math.PI);
+        crc2.arc(25, -20, 15, 0, 2 * Math.PI);
         crc2.fill();
         crc2.stroke();
         crc2.closePath();
 
         crc2.fillStyle = "yellow";
         crc2.beginPath();
-        crc2.moveTo(-1038, -10);
-        crc2.lineTo(-1050, -15);
-        crc2.lineTo(-1040, -25);
+        crc2.moveTo(38, -10);
+        crc2.lineTo(50, -15);
+        crc2.lineTo(40, -25);
         crc2.fill();
         crc2.closePath();
 
@@ -339,7 +278,32 @@
         crc2.restore();
     }
 
+    function createSnowflakes(): void {
+        for (let index: number = 0; index < 175; index++) {
+            xStep = xStep + 5; 
+            let snowflake: Snowflake = new Snowflake(1); 
+            snowflake.create(xStep); 
+            snowflakes.push(snowflake); 
+        }
+    }
+
+    function createBirds(): void {
+        for (let index: number = 0; index < 15; index++) {
+            xStep = xStep + 5; 
+            let bird: Bird = new Bird(); 
+            birds.push(bird); 
+        }
+    }
+
+    function update(): void {
+        crc2.putImageData(background, 0, 0); 
+        crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+        for (let snowflake of snowflakes) {
+            snowflake.move(1 / 50); 
+        }
+        for (let bird of birds) {
+            bird.move(1 / 50);
+        }
+    }
+
 }
-    
-}
-    

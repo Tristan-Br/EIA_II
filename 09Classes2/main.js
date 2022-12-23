@@ -1,67 +1,18 @@
-var birds;
-(function (birds) {
+var classes;
+(function (classes) {
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
         let canvas = document.querySelector("canvas");
         let crc2 = canvas.getContext("2d");
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
         drawBackground();
-        drawSun({ x: randomNumber(100, 1650), y: randomNumber(40, 100) });
-        drawMountains({ x: 0, y: 500 }, 75, 250, "grey", "white");
-        drawMountains({ x: 0, y: 500 }, 50, 150, "grey", "lightgrey");
-        drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 540 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 510 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 520 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 550 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 540 }, { x: 10, y: 100 });
-        drawTree({ x: randomNumber(10, 2000), y: 530 }, { x: 10, y: 100 });
-        drawSnowman({ x: randomNumber(100, 1000), y: 620 });
-        drawHouse({ x: 500, y: 620 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
-        drawBird({ x: 0, y: 0 });
+        drawSun({ x: randomNumber(50, 300), y: randomNumber(40, 100) });
+        drawMountains({ x: 0, y: 400 }, 75, 250, "grey", "white");
+        drawMountains({ x: 0, y: 440 }, 50, 150, "grey", "lightgrey");
+        drawTree({ x: randomNumber(10, 400), y: 500 }, { x: 10, y: 100 });
+        drawSnowman({ x: randomNumber(200, 210), y: 620 });
+        drawHouse({ x: 10, y: 10 });
+        drawBird({ x: randomNumber(50, 300), y: randomNumber(50, 600) });
+        drawBird({ x: randomNumber(50, 300), y: randomNumber(50, 600) });
         drawSnowflakes({ x: canvas.width, y: 800 }, { x: 200, y: 200 });
         function drawBackground() {
             let gradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
@@ -111,9 +62,8 @@ var birds;
             return Math.floor(Math.random() * _max) + _min;
         }
         function drawTree(_position, _size) {
-            crc2.fillStyle = "#4c3228";
+            crc2.fillStyle = "#B07C4F";
             crc2.fillRect(_position.x, _position.y, 20, -100);
-            let gradientTree = crc2.createLinearGradient(0, 0, 0, -180);
             let nBranches = 10;
             let maxRadius = 60;
             let branch = new Path2D();
@@ -199,8 +149,8 @@ var birds;
         }
         function drawHouse(_position) {
             crc2.save();
-            crc2.translate(1200, 600);
-            crc2.fillStyle = "darkbrown";
+            crc2.translate(50, 450);
+            crc2.fillStyle = "#B07C4F";
             crc2.fillRect(0, 0, 80, 80);
             crc2.strokeStyle = "brown";
             crc2.beginPath();
@@ -228,15 +178,15 @@ var birds;
             crc2.restore();
         }
         function drawBird(_position) {
-            let head = { x: _position.x - 200, y: _position.y - 1200 };
+            let head = { x: _position.x, y: _position.y };
             crc2.save();
-            crc2.translate(randomNumber(1400, 1600), randomNumber(500, 510));
+            crc2.translate(_position.x, _position.y);
             let color = "#" + randomNumber(10, 90) + randomNumber(10, 90) + randomNumber(10, 90);
             crc2.strokeStyle = color;
             crc2.fillStyle = color;
             crc2.lineWidth = 0;
             crc2.beginPath();
-            crc2.arc(-1000, 0, 20, 0, 2 * Math.PI);
+            crc2.arc(0, 0, 20, 0, 2 * Math.PI);
             crc2.fillStyle = color;
             crc2.fill();
             crc2.stroke();
@@ -245,19 +195,19 @@ var birds;
             crc2.lineWidth = 0;
             crc2.closePath();
             crc2.beginPath();
-            crc2.arc(-1025, -20, 15, 0, 2 * Math.PI);
+            crc2.arc(25, -20, 15, 0, 2 * Math.PI);
             crc2.fill();
             crc2.stroke();
             crc2.closePath();
             crc2.fillStyle = "yellow";
             crc2.beginPath();
-            crc2.moveTo(-1038, -10);
-            crc2.lineTo(-1050, -15);
-            crc2.lineTo(-1040, -25);
+            crc2.moveTo(38, -10);
+            crc2.lineTo(50, -15);
+            crc2.lineTo(40, -25);
             crc2.fill();
             crc2.closePath();
             crc2.restore();
         }
     }
-})(birds || (birds = {}));
-//# sourceMappingURL=scriptbird.js.map
+})(classes || (classes = {}));
+//# sourceMappingURL=main.js.map
