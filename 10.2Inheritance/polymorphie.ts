@@ -1,5 +1,5 @@
 namespace polymorphie {
-    export class Moves {
+    export class Moveable {
         position: Position;
         velocity: Position;
 

@@ -1,5 +1,5 @@
 namespace polymorphie {
-    export class Bird extends Moves {
+    export class Bird extends Moveable {
         declare position: Position; 
         declare velocity: Position;
 

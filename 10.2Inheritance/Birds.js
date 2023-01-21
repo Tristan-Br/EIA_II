@@ -1,6 +1,6 @@
 var polymorphie;
 (function (polymorphie) {
-    class Bird extends polymorphie.Moves {
+    class Bird extends polymorphie.Moveable {
         move(_step) {
             let offset = new polymorphie.Position(this.velocity.x, this.velocity.y);
             offset.scale(_step);

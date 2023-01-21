@@ -1,8 +1,7 @@
 var polymorphie;
 (function (polymorphie) {
     window.addEventListener("load", handleLoad);
-    let snowflakes = [];
-    let birds = [];
+    let moveables = [];
     let background;
     let xStep = 0;
     function handleLoad() {
@@ -202,27 +201,30 @@ var polymorphie;
     }
     function createSnowflakes() {
         for (let index = 0; index < 175; index++) {
-            xStep = xStep + 5;
-            let snowflake = new polymorphie.Snowflake(1);
-            snowflake.create(xStep);
-            snowflakes.push(snowflake);
+            xStep = xStep + 2;
+            let snowflake = new polymorphie.Snowflake(1, new polymorphie.Position(xStep, 0));
+            snowflake.create();
+            moveables.push(snowflake);
         }
     }
     function createBirds() {
-        for (let index = 0; index < 15; index++) {
-            xStep = xStep + 5;
-            let bird = new polymorphie.Bird();
-            birds.push(bird);
+        for (let index = 0; index < 25; index++) {
+            let velocity = new polymorphie.Position(0, 0);
+            velocity.random(100, 250);
+            let bird = new polymorphie.Bird(new polymorphie.Position(160, 200), velocity);
+            moveables.push(bird);
         }
     }
     function update() {
         polymorphie.crc2.putImageData(background, 0, 0);
         polymorphie.crc2.fillRect(0, 0, polymorphie.crc2.canvas.width, polymorphie.crc2.canvas.height);
-        for (let snowflake of snowflakes) {
-            snowflake.move(1 / 50);
-        }
-        for (let bird of birds) {
-            bird.move(1 / 50);
+        for (let Moveable of moveables) {
+            if (Moveable instanceof polymorphie.Snowflake) {
+                Moveable.move(1 / 50);
+            }
+            if (Moveable instanceof polymorphie.Bird) {
+                Moveable.move(1 / 50);
+            }
         }
     }
 })(polymorphie || (polymorphie = {}));

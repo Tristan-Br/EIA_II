@@ -1,6 +1,6 @@
 namespace polymorphie {
 
-    export class Snowflake extends Moves {
+    export class Snowflake extends Moveable {
         declare position: Position;
         declare velocity: Position;
         size: number;

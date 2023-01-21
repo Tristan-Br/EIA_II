@@ -1,6 +1,6 @@
 var polymorphie;
 (function (polymorphie) {
-    class Snowflake extends polymorphie.Moves {
+    class Snowflake extends polymorphie.Moveable {
         size;
         snowflake;
         gradient;

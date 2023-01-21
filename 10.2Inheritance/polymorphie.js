@@ -1,6 +1,6 @@
 var polymorphie;
 (function (polymorphie) {
-    class Moves {
+    class Moveable {
         position;
         velocity;
         constructor(_position, _velocity) {
@@ -12,6 +12,6 @@ var polymorphie;
                 this.velocity = new polymorphie.Position(0, 0);
         }
     }
-    polymorphie.Moves = Moves;
+    polymorphie.Moveable = Moveable;
 })(polymorphie || (polymorphie = {}));
 //# sourceMappingURL=polymorphie.js.map

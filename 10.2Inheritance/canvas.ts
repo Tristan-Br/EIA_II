@@ -4,8 +4,7 @@ namespace polymorphie {
     export let crc2: CanvasRenderingContext2D;   
     export let canvas: HTMLCanvasElement | null; 
 
-    let snowflakes: Snowflake[] = []; 
-    let birds: Bird[] = [];
+    let moveables: Moveable[] = []; 
     let background: ImageData; 
     let xStep: number = 0; 
 
@@ -280,30 +279,33 @@ namespace polymorphie {
 
     function createSnowflakes(): void {
         for (let index: number = 0; index < 175; index++) {
-            xStep = xStep + 5; 
-            let snowflake: Snowflake = new Snowflake(1); 
-            snowflake.create(xStep); 
-            snowflakes.push(snowflake); 
+            xStep = xStep + 2; 
+            let snowflake: Snowflake = new Snowflake(1, new Position(xStep, 0)); 
+            snowflake.create(); 
+            moveables.push(snowflake); 
         }
     }
 
     function createBirds(): void {
-        for (let index: number = 0; index < 15; index++) {
-            xStep = xStep + 5; 
-            let bird: Bird = new Bird(); 
-            birds.push(bird); 
+        for (let index: number = 0; index < 25; index++) {
+            let velocity: Position = new Position(0, 0); 
+            velocity.random(100, 250); 
+            let bird: Bird = new Bird(new Position(160, 200), velocity); 
+            moveables.push(bird); 
         }
     }
 
     function update(): void {
         crc2.putImageData(background, 0, 0); 
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-        for (let snowflake of snowflakes) {
-            snowflake.move(1 / 50); 
+        for (let Moveable of moveables) {
+            if (Moveable instanceof Snowflake) {
+                Moveable.move(1 / 50);
         }
-        for (let bird of birds) {
-            bird.move(1 / 50);
-        }
+            if (Moveable instanceof Bird) {
+                Moveable.move(1 / 50);
+            }
+    }
     }
 
 }
