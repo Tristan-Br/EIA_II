@@ -1,0 +1,72 @@
+body{
+    position: relative;
+    text-align: center;
+    margin: auto;
+    background-color: #ACE1AF;
+    width: 375px;
+    height: 667px;
+}
+
+.footer{
+    margin-top: 30%;
+    padding-top: 50px;
+    padding-bottom: 10%;
+    background-color: grey;
+}
+
+#sbutton{
+    background-color: green;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+#htmlbutton{
+    margin: 10px;
+    padding: 5px;
+    background-color: green;
+}
+
+#cssbutton{
+    margin: 10px;
+    padding: 5px;
+    background-color: green;
+}
+
+#tsbutton{
+    margin: 10px;
+    padding: 5px;
+    background-color: green;
+}
+
+#gemischtbutton{
+    margin: 10px;
+    padding: 5px;
+    background-color: green;
+}
+
+#A{
+    margin: 10px;
+    padding: 5px;
+    background-color: green;
+}
+
+#B{
+    margin: 10px;
+    padding: 5px;
+    background-color: red
+}
+
+#C{
+    margin: 10px;
+    padding: 5px;
+    background-color: blue
+}
+
+#weiterbutton{
+    margin: 10px;
+    padding: 5px;
+    
+}
+
+
+
