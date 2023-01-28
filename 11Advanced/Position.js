@@ -1,6 +1,6 @@
-var animation;
-(function (animation) {
-    class Vector {
+var advanced;
+(function (advanced) {
+    class Position {
         x;
         y;
         constructor(_x, _y) {
@@ -18,6 +18,9 @@ var animation;
             this.y += _addend.y;
             this.x += _addend.x;
         }
+        copy() {
+            return new Position(this.x, this.y);
+        }
         random(_minLength, _maxLength) {
             let length = _minLength + Math.random() * (_maxLength - _minLength);
             let direction = Math.random() * 2 * Math.PI;
@@ -25,6 +28,6 @@ var animation;
             this.scale(length);
         }
     }
-    animation.Vector = Vector;
-})(animation || (animation = {}));
-//# sourceMappingURL=Vector.js.map
+    advanced.Position = Position;
+})(advanced || (advanced = {}));
+//# sourceMappingURL=Position.js.map
