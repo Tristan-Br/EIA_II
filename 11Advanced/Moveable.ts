@@ -1,5 +1,5 @@
 namespace advanced {
-    export class Moveable {
+    export abstract class Moveable {
         position: Position;
         velocity: Position;
 
