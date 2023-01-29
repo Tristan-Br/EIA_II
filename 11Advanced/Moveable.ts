@@ -2,6 +2,7 @@ namespace advanced {
     export abstract class Moveable {
         position: Position;
         velocity: Position;
+        expendable: boolean = false;
 
         constructor(_position?: Position, _velocity?: Position) {
             this.position = _position.copy();
@@ -11,5 +12,7 @@ namespace advanced {
             else
             this.velocity = new Position(0, 0);
         }
+
+       
     }
 }

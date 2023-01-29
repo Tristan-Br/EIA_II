@@ -8,13 +8,7 @@ namespace advanced {
     let background: ImageData; 
     let xStep: number = 0; 
 
-    export interface Vector {
-        x: number;
-        y: number;
-
     
-    }
-
     function handleLoad(): void {
         canvas = document.querySelector("canvas");
         if (!canvas)
@@ -24,6 +18,8 @@ namespace advanced {
         createSnowflakes();
         createBirds();
         setInterval(update, 50); 
+
+        canvas.addEventListener("click", clickCanvas);
     }
 
     export function randomNumber(_min: number, _max: number): number {
@@ -35,14 +31,13 @@ namespace advanced {
         drawSun({ x: randomNumber(50, 300), y: 50 });
         drawMountains({ x: 0, y: 400 }, 75, 250, "grey", "white");
         drawMountains({ x: 0, y: 440 }, 50, 150, "grey", "lightgrey");
-        drawTree({ x: randomNumber(10, 400), y: 500 }, { x: 10, y: 100 });
+        drawTree({ x: 150, y: 500 }, { x: 10, y: 100 });
         drawSnowman({x: 260, y: 620});
         drawHouse({x: 10, y: 10});
+        background = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
+        }
 
-        drawBird({ x: randomNumber(50, 300), y: randomNumber(50, 600) });
-    
-        
-    }
+
 
     function drawBackground (): void {
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
@@ -236,46 +231,15 @@ namespace advanced {
         crc2.restore();
     }
 
-    function drawBird (_position: Vector): void {
+    /* function drawBird (_position: Vector): void {
         let head: Vector = {x: _position.x, y: _position.y}; 
         crc2.save(); 
         crc2.translate(_position.x, _position.y);
 
         let color: string = "#" + randomNumber(10, 90) + randomNumber(10, 90) + randomNumber(10, 90);
         
-
-        crc2.strokeStyle = color;
-        crc2.fillStyle = color;
-        crc2.lineWidth = 0;
-
-        crc2.beginPath();
-        crc2.arc(0, 0, 20, 0, 2 * Math.PI);
-        crc2.fillStyle = color;
-        crc2.fill();
-        crc2.stroke();
-        crc2.strokeStyle = color;
-        crc2.fillStyle = color;
-        crc2.lineWidth = 0;
-        crc2.closePath();
-
-        crc2.beginPath();
-        crc2.arc(25, -20, 15, 0, 2 * Math.PI);
-        crc2.fill();
-        crc2.stroke();
-        crc2.closePath();
-
-        crc2.fillStyle = "yellow";
-        crc2.beginPath();
-        crc2.moveTo(38, -10);
-        crc2.lineTo(50, -15);
-        crc2.lineTo(40, -25);
-        crc2.fill();
-        crc2.closePath();
-
-        
-
-        crc2.restore();
-    }
+        let bird: Bird = new Bird;
+    } */
 
     function createSnowflakes(): void {
         for (let index: number = 0; index < 175; index++) {
@@ -287,10 +251,10 @@ namespace advanced {
     }
 
     function createBirds(): void {
-        for (let index: number = 0; index < 25; index++) {
+        for (let index: number = 0; index < 5; index++) {
             let velocity: Position = new Position(0, 0); 
             velocity.random(100, 250); 
-            let bird: Bird = new Bird(new Position(160, 200), velocity); 
+            let bird: Bird = new Bird(new Position(160, 200)); 
             moveables.push(bird); 
         }
     }
@@ -298,14 +262,56 @@ namespace advanced {
     function update(): void {
         crc2.putImageData(background, 0, 0); 
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-        for (let Moveable of moveables) {
-            if (Moveable instanceof Snowflake) {
-                Moveable.move(1 / 50);
+        for (let moveable of moveables) {
+            if (moveable instanceof Snowflake) {
+                moveable.move(1 / 50);
         }
-            if (Moveable instanceof Bird) {
-                Moveable.move(1 / 50);
+            if (moveable instanceof Bird) {
+                moveable.move(1 / 50);
+                moveable.checkTargetDistance();
             }
+
+            deleteExpandables();
     }
+    }
+
+    function clickCanvas(_event: MouseEvent): void {
+        let hotspot: Position = new Position(_event.clientX - crc2.canvas.offsetLeft, _event.clientY - crc2.canvas.offsetTop);
+        let birdHit: Bird | null = getBirdHit(hotspot);
+        if (birdHit)
+            killBird(birdHit);
+        else {
+            createBird(hotspot);
+        }
+
+    }
+
+    function getBirdHit(_hotspot: Position): Bird | null {
+        for (let moveable of moveables) {
+            if (moveable instanceof Bird && moveable.isHit(_hotspot))
+                return moveable;
+        }
+
+        return null;
+    }
+
+    function killBird(_bird: Bird): void {
+        _bird.expendable = true;
+    }
+
+    function createBird(_hotspot: Position): void {
+        let velocity: Position = new Position(0, 0); 
+        velocity.random(100, 250); 
+        let bird: Bird = new Bird(_hotspot);
+        moveables.push(bird);
+
+    }
+
+    function deleteExpandables(): void {
+        for (let i: number = moveables.length - 1; i >= 0; i--) {
+            if (moveables[i].expendable)
+                moveables.splice(i, 1);
+        }
     }
 
 }

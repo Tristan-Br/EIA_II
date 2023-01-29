@@ -13,6 +13,7 @@ var advanced;
         createSnowflakes();
         createBirds();
         setInterval(update, 50);
+        advanced.canvas.addEventListener("click", clickCanvas);
     }
     function randomNumber(_min, _max) {
         return Math.floor(Math.random() * _max) + _min;
@@ -23,10 +24,10 @@ var advanced;
         drawSun({ x: randomNumber(50, 300), y: 50 });
         drawMountains({ x: 0, y: 400 }, 75, 250, "grey", "white");
         drawMountains({ x: 0, y: 440 }, 50, 150, "grey", "lightgrey");
-        drawTree({ x: randomNumber(10, 400), y: 500 }, { x: 10, y: 100 });
+        drawTree({ x: 150, y: 500 }, { x: 10, y: 100 });
         drawSnowman({ x: 260, y: 620 });
         drawHouse({ x: 10, y: 10 });
-        drawBird({ x: randomNumber(50, 300), y: randomNumber(50, 600) });
+        background = advanced.crc2.getImageData(0, 0, advanced.crc2.canvas.width, advanced.crc2.canvas.height);
     }
     function drawBackground() {
         let gradient = advanced.crc2.createLinearGradient(0, 0, 0, advanced.crc2.canvas.height);
@@ -168,37 +169,15 @@ var advanced;
         advanced.crc2.closePath();
         advanced.crc2.restore();
     }
-    function drawBird(_position) {
-        let head = { x: _position.x, y: _position.y };
-        advanced.crc2.save();
-        advanced.crc2.translate(_position.x, _position.y);
-        let color = "#" + randomNumber(10, 90) + randomNumber(10, 90) + randomNumber(10, 90);
-        advanced.crc2.strokeStyle = color;
-        advanced.crc2.fillStyle = color;
-        advanced.crc2.lineWidth = 0;
-        advanced.crc2.beginPath();
-        advanced.crc2.arc(0, 0, 20, 0, 2 * Math.PI);
-        advanced.crc2.fillStyle = color;
-        advanced.crc2.fill();
-        advanced.crc2.stroke();
-        advanced.crc2.strokeStyle = color;
-        advanced.crc2.fillStyle = color;
-        advanced.crc2.lineWidth = 0;
-        advanced.crc2.closePath();
-        advanced.crc2.beginPath();
-        advanced.crc2.arc(25, -20, 15, 0, 2 * Math.PI);
-        advanced.crc2.fill();
-        advanced.crc2.stroke();
-        advanced.crc2.closePath();
-        advanced.crc2.fillStyle = "yellow";
-        advanced.crc2.beginPath();
-        advanced.crc2.moveTo(38, -10);
-        advanced.crc2.lineTo(50, -15);
-        advanced.crc2.lineTo(40, -25);
-        advanced.crc2.fill();
-        advanced.crc2.closePath();
-        advanced.crc2.restore();
-    }
+    /* function drawBird (_position: Vector): void {
+        let head: Vector = {x: _position.x, y: _position.y};
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+
+        let color: string = "#" + randomNumber(10, 90) + randomNumber(10, 90) + randomNumber(10, 90);
+        
+        let bird: Bird = new Bird;
+    } */
     function createSnowflakes() {
         for (let index = 0; index < 175; index++) {
             xStep = xStep + 2;
@@ -208,23 +187,56 @@ var advanced;
         }
     }
     function createBirds() {
-        for (let index = 0; index < 25; index++) {
+        for (let index = 0; index < 5; index++) {
             let velocity = new advanced.Position(0, 0);
             velocity.random(100, 250);
-            let bird = new advanced.Bird(new advanced.Position(160, 200), velocity);
+            let bird = new advanced.Bird(new advanced.Position(160, 200));
             moveables.push(bird);
         }
     }
     function update() {
         advanced.crc2.putImageData(background, 0, 0);
         advanced.crc2.fillRect(0, 0, advanced.crc2.canvas.width, advanced.crc2.canvas.height);
-        for (let Moveable of moveables) {
-            if (Moveable instanceof advanced.Snowflake) {
-                Moveable.move(1 / 50);
+        for (let moveable of moveables) {
+            if (moveable instanceof advanced.Snowflake) {
+                moveable.move(1 / 50);
             }
-            if (Moveable instanceof advanced.Bird) {
-                Moveable.move(1 / 50);
+            if (moveable instanceof advanced.Bird) {
+                moveable.move(1 / 50);
+                moveable.checkTargetDistance();
             }
+            deleteExpandables();
+        }
+    }
+    function clickCanvas(_event) {
+        let hotspot = new advanced.Position(_event.clientX - advanced.crc2.canvas.offsetLeft, _event.clientY - advanced.crc2.canvas.offsetTop);
+        let birdHit = getBirdHit(hotspot);
+        if (birdHit)
+            killBird(birdHit);
+        else {
+            createBird(hotspot);
+        }
+    }
+    function getBirdHit(_hotspot) {
+        for (let moveable of moveables) {
+            if (moveable instanceof advanced.Bird && moveable.isHit(_hotspot))
+                return moveable;
+        }
+        return null;
+    }
+    function killBird(_bird) {
+        _bird.expendable = true;
+    }
+    function createBird(_hotspot) {
+        let velocity = new advanced.Position(0, 0);
+        velocity.random(100, 250);
+        let bird = new advanced.Bird(_hotspot);
+        moveables.push(bird);
+    }
+    function deleteExpandables() {
+        for (let i = moveables.length - 1; i >= 0; i--) {
+            if (moveables[i].expendable)
+                moveables.splice(i, 1);
         }
     }
 })(advanced || (advanced = {}));

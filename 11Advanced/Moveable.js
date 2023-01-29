@@ -3,6 +3,7 @@ var advanced;
     class Moveable {
         position;
         velocity;
+        expendable = false;
         constructor(_position, _velocity) {
             this.position = _position.copy();
             if (_velocity) {
