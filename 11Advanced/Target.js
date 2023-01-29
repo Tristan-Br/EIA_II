@@ -20,7 +20,7 @@ var advanced;
         {
             x: -200,
             y: -500
-        },
+        }
     ];
 })(advanced || (advanced = {}));
 //# sourceMappingURL=Target.js.map

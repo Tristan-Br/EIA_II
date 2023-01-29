@@ -2,8 +2,6 @@ namespace advanced {
     export interface Vector {
         x: number;
         y: number;
-
-    
     }
 
     export let targets: Vector[] = [
@@ -30,7 +28,7 @@ namespace advanced {
         {
             x: -200,
             y: -500
-        },
+        }
     ];
 
 }
